@@ -1,0 +1,7 @@
+{
+  "name": "molora",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
