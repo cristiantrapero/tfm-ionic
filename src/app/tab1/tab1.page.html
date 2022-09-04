@@ -1,17 +1,56 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+      <ion-button slot="end" (click)="getNetworks()" class="ionBtn">
+          <ion-icon slot="start" name="wifi-outline"></ion-icon>
+          {{ 'Scan' }}
+      </ion-button>
+      <ion-title>
+          {{ 'Nodes' | uppercase }}
+      </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+<p> Connected to WiFi: <b>{{currentNetwork}}</b></p>
+ <p>{{ message }}</p>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-list>
+      <ion-card *ngFor="let node of nodes">
+          <ion-item>
+              <div class="show-list-numbers-and-dots">
+                  <p>
+                      {{ 'SSID' }}:
+                      <strong> {{node.SSID}} </strong>
+                  </p>
+              </div>
+          </ion-item>
+          <ion-item>
+              <div class="show-list-numbers-and-dots">
+                  <p>
+                      {{ 'BSSID' }}:
+                      <strong> {{node.BSSID}} </strong>
+                  </p>
+              </div>
+          </ion-item>
+          <ion-item>
+              <div class="show-list-numbers-and-dots">
+                  <p>
+                      {{ 'RSSI' }}:
+                      <strong> {{node.level}} </strong>
+                  </p>
+              </div>
+          </ion-item>
+          <ion-item>
+            <div class="show-list-numbers-and-dots">
+                <ion-button slot="end" (click)="connectToNode(node)" class="ionBtn">
+                    <ion-icon slot="end" name="arrow-forward"></ion-icon>
+                    {{ 'Connect to node' }}
+                </ion-button>
+            </div>
+        </ion-item>
+      </ion-card>
+  </ion-list>
+
+  <p><b>{{error}}</b></p>
+
 </ion-content>
