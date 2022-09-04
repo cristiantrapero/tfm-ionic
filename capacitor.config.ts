@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'io.cristiantrapero.molora',
   appName: 'molora',
   webDir: 'www',
   bundledWebRuntime: false
