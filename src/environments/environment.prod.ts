@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  nodeUrl: 'http://192.168.4.1'
 };
