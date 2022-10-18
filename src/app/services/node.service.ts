@@ -22,9 +22,9 @@ export class NodeService {
     return this.http.get(`${environment.nodeUrl}/hello`);
   }
 
-  postMessage(receiver: string, broadcast: boolean, message: string): Observable<any> {
-    return this.http.post(`${environment.nodeUrl}/message`, {
-      receiver,
+  postMessage(address: string, broadcast: boolean, message: string): Observable<any> {
+    return this.http.post(`${environment.nodeUrl}/messages`, {
+      address,
       broadcast,
       message
      });

@@ -12,6 +12,47 @@
       <ion-title size="large">Chats</ion-title>
     </ion-toolbar>
   </ion-header>
-
+  <ion-toolbar>
+    <ion-segment [scrollable]="true" (ionChange)="selectedReceiver($event)">
+      <ion-segment-button  value={{address}}  *ngFor="let address of info?.nodes.addresses">
+        {{address}}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
   <!-- <app-explore-container name="Tab 2 page"></app-explore-container> -->
+  <div class="message" *ngFor="let message of messages">
+
+    <!-- if message not include blob, show text -->
+    <div *ngIf="!message.includes('blob:')">
+    <p>{{message}}</p>
+   </div>
+
+    <div *ngIf="message.includes('blob')">
+      <ion-img [src]="message"></ion-img>
+    </div>
+  </div>
+
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item lines="none">
+      <ion-input type="text" placeholder="Message" [(ngModel)]="message" autocomplete="on" autocorrect="on">
+      </ion-input>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
+            <ion-img [src]="photo.webviewPath"></ion-img>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-button fill="clear" slot="end" (click)="addPhotoToGallery()">
+        <ion-icon name="camera-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" slot="end" (click)="sendMessage()">
+        <ion-icon name="send-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>
